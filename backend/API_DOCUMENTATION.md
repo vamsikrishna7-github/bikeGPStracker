@@ -445,3 +445,67 @@ Set the following in your environment or Django settings:
 
 **API Version:** 1.0  
 **Last Updated:** January 2024
+
+---
+
+## IoT GPS Endpoints
+
+Base path: `/api/iot/`
+
+### List GPS Data
+- Method: `GET`
+- URL: `/api/iot/gps/`
+- Response: `200 OK`
+```json
+[
+  {
+    "id": 1,
+    "device_id": "device-123",
+    "latitude": 37.422,
+    "longitude": -122.084,
+    "timestamp": "2025-01-01T12:34:56Z"
+  }
+]
+```
+
+### Create GPS Data
+- Method: `POST`
+- URL: `/api/iot/gps/`
+- Body (JSON):
+```json
+{
+  "device_id": "device-123",
+  "latitude": 37.422,
+  "longitude": -122.084
+}
+```
+- Response: `201 Created`
+```json
+{
+  "id": 2,
+  "device_id": "device-123",
+  "latitude": 37.422,
+  "longitude": -122.084,
+  "timestamp": "2025-01-01T12:35:01Z"
+}
+```
+
+### Retrieve GPS Data
+- Method: `GET`
+- URL: `/api/iot/gps/{id}/`
+- Response: `200 OK`
+
+### Update GPS Data
+- Method: `PUT`
+- URL: `/api/iot/gps/{id}/`
+- Body (JSON): same as create
+- Response: `200 OK`
+
+### Delete GPS Data
+- Method: `DELETE`
+- URL: `/api/iot/gps/{id}/`
+- Response: `204 No Content`
+
+### Notes
+- `timestamp` is read-only and set by the server.
+- All responses are JSON.

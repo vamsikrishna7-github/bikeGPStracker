@@ -1,0 +1,98 @@
+{
+  "info": {
+    "name": "IoT GPS API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "_postman_id": "e7e5a9f4-0000-4f33-9b22-aaaa1111bbbb"
+  },
+  "item": [
+    {
+      "name": "List GPS Data",
+      "request": {
+        "method": "GET",
+        "header": [
+          { "key": "Content-Type", "value": "application/json" }
+        ],
+        "url": {
+          "raw": "http://localhost:8000/api/iot/gps/",
+          "protocol": "http",
+          "host": ["localhost"],
+          "port": "8000",
+          "path": ["api", "iot", "gps", ""]
+        }
+      }
+    },
+    {
+      "name": "Create GPS Data",
+      "request": {
+        "method": "POST",
+        "header": [
+          { "key": "Content-Type", "value": "application/json" }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"device_id\": \"device-123\",\n  \"latitude\": 37.422,\n  \"longitude\": -122.084\n}"
+        },
+        "url": {
+          "raw": "http://localhost:8000/api/iot/gps/",
+          "protocol": "http",
+          "host": ["localhost"],
+          "port": "8000",
+          "path": ["api", "iot", "gps", ""]
+        }
+      }
+    },
+    {
+      "name": "Retrieve GPS Data",
+      "request": {
+        "method": "GET",
+        "header": [
+          { "key": "Content-Type", "value": "application/json" }
+        ],
+        "url": {
+          "raw": "http://localhost:8000/api/iot/gps/1/",
+          "protocol": "http",
+          "host": ["localhost"],
+          "port": "8000",
+          "path": ["api", "iot", "gps", "1", ""]
+        }
+      }
+    },
+    {
+      "name": "Update GPS Data",
+      "request": {
+        "method": "PUT",
+        "header": [
+          { "key": "Content-Type", "value": "application/json" }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"device_id\": \"device-123\",\n  \"latitude\": 37.423,\n  \"longitude\": -122.085\n}"
+        },
+        "url": {
+          "raw": "http://localhost:8000/api/iot/gps/1/",
+          "protocol": "http",
+          "host": ["localhost"],
+          "port": "8000",
+          "path": ["api", "iot", "gps", "1", ""]
+        }
+      }
+    },
+    {
+      "name": "Delete GPS Data",
+      "request": {
+        "method": "DELETE",
+        "header": [
+          { "key": "Content-Type", "value": "application/json" }
+        ],
+        "url": {
+          "raw": "http://localhost:8000/api/iot/gps/1/",
+          "protocol": "http",
+          "host": ["localhost"],
+          "port": "8000",
+          "path": ["api", "iot", "gps", "1", ""]
+        }
+      }
+    }
+  ]
+}
+
