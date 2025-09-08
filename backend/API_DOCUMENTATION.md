@@ -36,42 +36,7 @@ All API responses follow this format:
 
 ## Authentication Endpoints
 
-### User Registration
-**POST** `/api/auth/register/`
-
-Register a new user account.
-
-**Request Body:**
-```json
-{
-  "username": "string",
-  "email": "string",
-  "password": "string",
-  "password_confirm": "string",
-  "first_name": "string (optional)",
-  "last_name": "string (optional)"
-}
-```
-
-**Response:**
-```json
-{
-  "success": true,
-  "message": "User registered successfully",
-  "data": {
-    "access": "jwt-access-token",
-    "refresh": "jwt-refresh-token",
-    "user": {
-      "id": 1,
-      "username": "testuser",
-      "email": "test@example.com",
-      "first_name": "Test",
-      "last_name": "User",
-      "date_joined": "2024-01-01T12:00:00Z"
-    }
-  }
-}
-```
+> Note: User registration is disabled. Use existing credentials and the Login endpoint.
 
 ### User Login
 **POST** `/api/auth/login/`

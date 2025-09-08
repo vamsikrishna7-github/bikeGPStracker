@@ -5,8 +5,7 @@ from . import views
 app_name = 'accounts'
 
 urlpatterns = [
-    # Authentication endpoints
-    path('register/', views.UserRegistrationView.as_view(), name='register'),
+    # Authentication endpoints (registration disabled)
     path('login/', views.LoginView.as_view(), name='login'),
     path('logout/', views.LogoutView.as_view(), name='logout'),
     path('refresh/', views.TokenRefreshView.as_view(), name='token_refresh'),
