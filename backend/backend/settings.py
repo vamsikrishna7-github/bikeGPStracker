@@ -213,3 +213,8 @@ CORS_ALLOW_HEADERS = [
     'x-csrftoken',
     'x-requested-with',
 ]
+
+# IoT devices allowed to authenticate using DeviceTokenAuthentication
+IOT_DEVICE_IDS = [
+    'iot_device_1234',
+]

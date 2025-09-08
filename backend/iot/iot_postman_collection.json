@@ -14,6 +14,9 @@
       }
     ]
   },
+  "variable": [
+    { "key": "access_token", "value": "iot_device_1234" }
+  ],
   "item": [
     {
       "name": "List GPS Data",

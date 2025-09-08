@@ -1,7 +1,8 @@
-from rest_framework import generics, mixins, status
+from rest_framework import generics, mixins, status, permissions
 from rest_framework.response import Response
 from .models import GPSData
 from .serializers import GPSDataSerializer
+from .authentication import DeviceTokenAuthentication
 
 
 class GPSDataListCreateView(mixins.ListModelMixin,
@@ -9,6 +10,8 @@ class GPSDataListCreateView(mixins.ListModelMixin,
 	generics.GenericAPIView):
 	queryset = GPSData.objects.all().order_by('-timestamp')
 	serializer_class = GPSDataSerializer
+    authentication_classes = [DeviceTokenAuthentication]
+    permission_classes = [permissions.AllowAny]
 
 	def get(self, request, *args, **kwargs):
 		return self.list(request, *args, **kwargs)
@@ -27,6 +30,8 @@ class GPSDataDetailView(mixins.RetrieveModelMixin,
 	generics.GenericAPIView):
 	queryset = GPSData.objects.all()
 	serializer_class = GPSDataSerializer
+    authentication_classes = [DeviceTokenAuthentication]
+    permission_classes = [permissions.AllowAny]
 
 	def get(self, request, *args, **kwargs):
 		return self.retrieve(request, *args, **kwargs)

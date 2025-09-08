@@ -474,3 +474,4 @@ Base path: `/api/iot/`
 ### Notes
 - `timestamp` is read-only and set by the server.
 - All responses are JSON.
+- IoT device access: You can authenticate by sending the device id as a Bearer token. Example: `Authorization: Bearer iot_device_1234`. This token has no expiry.
