@@ -10,6 +10,7 @@ class GPSDataSerializer(serializers.ModelSerializer):
 			'device_id',
 			'latitude',
 			'longitude',
+			'speed',
 			'timestamp',
 		]
 		read_only_fields = ['id', 'timestamp']

@@ -5,6 +5,7 @@ class GPSData(models.Model):
 	device_id = models.CharField(max_length=100)
 	latitude = models.FloatField()
 	longitude = models.FloatField()
+	speed = models.FloatField(default=0.0)  # km/h
 	timestamp = models.DateTimeField(auto_now_add=True)
 
 	def __str__(self):
