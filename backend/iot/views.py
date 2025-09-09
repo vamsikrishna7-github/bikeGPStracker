@@ -1,8 +1,10 @@
 from rest_framework import generics, mixins, status, permissions
 from rest_framework.response import Response
-from .models import GPSData, DeviceStatusLog
-from .serializers import GPSDataSerializer, DeviceStatusLogSerializer
+from .models import GPSData, DeviceStatusLog, Device
+from .serializers import GPSDataSerializer, DeviceStatusLogSerializer, DeviceSerializer
 from .authentication import DeviceTokenAuthentication
+from rest_framework.decorators import api_view
+
 
 
 class GPSDataListCreateView(mixins.ListModelMixin,
@@ -88,3 +90,23 @@ class DeviceStatusLogDetailView(mixins.RetrieveModelMixin,
 
 	def delete(self, request, *args, **kwargs):
 		return self.destroy(request, *args, **kwargs)
+
+@api_view(["GET"])
+def relay_status(request, device_id):
+    try:
+        device = Device.objects.get(device_id=device_id)
+        return Response(DeviceSerializer(device).data)
+    except Device.DoesNotExist:
+        return Response({"error": "Device not found"}, status=404)
+
+@api_view(["POST"])
+def set_relay(request, device_id):
+    try:
+        device, _ = Device.objects.get_or_create(device_id=device_id)
+        state = request.data.get("relay_state")
+        if state is not None:
+            device.relay_state = state
+            device.save()
+        return Response(DeviceSerializer(device).data)
+    except Exception as e:
+        return Response({"error": str(e)}, status=400)

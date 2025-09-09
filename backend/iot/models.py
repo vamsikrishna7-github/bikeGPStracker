@@ -42,3 +42,10 @@ class DeviceStatusLog(models.Model):
 
 	def __str__(self):
 		return f"{self.device_id} [{self.module}] {self.status} - {self.created_at}"
+
+
+
+class Device(models.Model):
+    device_id = models.CharField(max_length=100, unique=True)
+    relay_state = models.BooleanField(default=False)  # False = OFF, True = ON
+    updated_at = models.DateTimeField(auto_now=True)
