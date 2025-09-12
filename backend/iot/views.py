@@ -214,8 +214,8 @@ def calculate_statistics(gps_data_queryset):
 		'max_speed_kmh': round(max(speeds) if speeds else 0, 2),
 		'total_idle_time_hours': round(idle_time, 2),
 		'total_moving_time_hours': round(moving_time, 2),
-		'ignition_on_count': ignition_statuses.count(True),
-		'ignition_off_count': ignition_statuses.count(False),
+		'ignition_on_count': gps_data_queryset.filter(ignitionstatus=True).count(),
+		'ignition_off_count': gps_data_queryset.filter(ignitionstatus=False).count(),
 		'route_points': route_points
 	}
 
