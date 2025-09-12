@@ -226,6 +226,14 @@ def device_statistics(request, device_id):
 	Get statistics for a specific device
 	Query parameters: period (day, week, month, year), start_date, end_date
 	"""
+	# Check authentication
+	auth = DeviceTokenAuthentication()
+	user, _ = auth.authenticate(request)
+	if not user:
+		return Response(
+			{'error': 'Authentication required'}, 
+			status=status.HTTP_401_UNAUTHORIZED
+		)
 	period = request.GET.get('period', 'day')
 	start_date = request.GET.get('start_date')
 	end_date = request.GET.get('end_date')
@@ -298,6 +306,14 @@ def daily_statistics(request, device_id):
 	Get daily statistics for a device over a date range
 	Query parameters: start_date, end_date
 	"""
+	# Check authentication
+	auth = DeviceTokenAuthentication()
+	user, _ = auth.authenticate(request)
+	if not user:
+		return Response(
+			{'error': 'Authentication required'}, 
+			status=status.HTTP_401_UNAUTHORIZED
+		)
 	start_date = request.GET.get('start_date')
 	end_date = request.GET.get('end_date')
 	
@@ -346,6 +362,14 @@ def weekly_statistics(request, device_id):
 	Get weekly statistics for a device
 	Query parameters: start_date, end_date
 	"""
+	# Check authentication
+	auth = DeviceTokenAuthentication()
+	user, _ = auth.authenticate(request)
+	if not user:
+		return Response(
+			{'error': 'Authentication required'}, 
+			status=status.HTTP_401_UNAUTHORIZED
+		)
 	start_date = request.GET.get('start_date')
 	end_date = request.GET.get('end_date')
 	
@@ -425,6 +449,14 @@ def monthly_statistics(request, device_id):
 	Get monthly statistics for a device
 	Query parameters: year
 	"""
+	# Check authentication
+	auth = DeviceTokenAuthentication()
+	user, _ = auth.authenticate(request)
+	if not user:
+		return Response(
+			{'error': 'Authentication required'}, 
+			status=status.HTTP_401_UNAUTHORIZED
+		)
 	year = request.GET.get('year', datetime.now().year)
 	
 	try:
@@ -498,6 +530,14 @@ def yearly_statistics(request, device_id):
 	Get yearly statistics for a device
 	Query parameters: start_year, end_year
 	"""
+	# Check authentication
+	auth = DeviceTokenAuthentication()
+	user, _ = auth.authenticate(request)
+	if not user:
+		return Response(
+			{'error': 'Authentication required'}, 
+			status=status.HTTP_401_UNAUTHORIZED
+		)
 	start_year = request.GET.get('start_year', datetime.now().year - 1)
 	end_year = request.GET.get('end_year', datetime.now().year)
 	

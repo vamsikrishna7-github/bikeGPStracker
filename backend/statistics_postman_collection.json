@@ -1,0 +1,717 @@
+{
+  "info": {
+    "name": "GPS Statistics API Collection",
+    "description": "Complete collection for testing GPS tracking statistics endpoints",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "version": "1.0.0"
+  },
+  "auth": {
+    "type": "bearer",
+    "bearer": [
+      {
+        "key": "token",
+        "value": "iot_device_1234",
+        "type": "string"
+      }
+    ]
+  },
+  "variable": [
+    {
+      "key": "base_url",
+      "value": "https://bikegpstracker.onrender.com/api/iot",
+      "type": "string"
+    },
+    {
+      "key": "device_id",
+      "value": "device-123",
+      "type": "string"
+    }
+  ],
+  "item": [
+    {
+      "name": "GPS Data",
+      "item": [
+        {
+          "name": "Get All GPS Data",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{base_url}}/gps/",
+              "host": ["{{base_url}}"],
+              "path": ["gps", ""]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Create GPS Data",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Authorization",
+                "value": "Bearer {{token}}"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"device_id\": \"{{device_id}}\",\n  \"latitude\": 40.7128,\n  \"longitude\": -74.0060,\n  \"altitude\": 10.5,\n  \"course\": 45.0,\n  \"speed\": 25.5,\n  \"ignitionstatus\": true\n}"
+            },
+            "url": {
+              "raw": "{{base_url}}/gps/",
+              "host": ["{{base_url}}"],
+              "path": ["gps", ""]
+            }
+          },
+          "response": []
+        }
+      ]
+    },
+    {
+      "name": "Device Control",
+      "item": [
+        {
+          "name": "Get Relay Status",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{base_url}}/relay/{{device_id}}/",
+              "host": ["{{base_url}}"],
+              "path": ["relay", "{{device_id}}", ""]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Set Relay State",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Authorization",
+                "value": "Bearer {{token}}"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"relay_state\": true\n}"
+            },
+            "url": {
+              "raw": "{{base_url}}/relay/{{device_id}}/set/",
+              "host": ["{{base_url}}"],
+              "path": ["relay", "{{device_id}}", "set", ""]
+            }
+          },
+          "response": []
+        }
+      ]
+    },
+    {
+      "name": "Statistics - General",
+      "item": [
+        {
+          "name": "Get Today's Statistics",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{base_url}}/statistics/{{device_id}}/?period=day",
+              "host": ["{{base_url}}"],
+              "path": ["statistics", "{{device_id}}", ""],
+              "query": [
+                {
+                  "key": "period",
+                  "value": "day"
+                }
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Get Last Week's Statistics",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{base_url}}/statistics/{{device_id}}/?period=week",
+              "host": ["{{base_url}}"],
+              "path": ["statistics", "{{device_id}}", ""],
+              "query": [
+                {
+                  "key": "period",
+                  "value": "week"
+                }
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Get Last Month's Statistics",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{base_url}}/statistics/{{device_id}}/?period=month",
+              "host": ["{{base_url}}"],
+              "path": ["statistics", "{{device_id}}", ""],
+              "query": [
+                {
+                  "key": "period",
+                  "value": "month"
+                }
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Get Last Year's Statistics",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{base_url}}/statistics/{{device_id}}/?period=year",
+              "host": ["{{base_url}}"],
+              "path": ["statistics", "{{device_id}}", ""],
+              "query": [
+                {
+                  "key": "period",
+                  "value": "year"
+                }
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Get Custom Date Range Statistics",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{base_url}}/statistics/{{device_id}}/?start_date=2024-01-01T00:00:00Z&end_date=2024-01-31T23:59:59Z",
+              "host": ["{{base_url}}"],
+              "path": ["statistics", "{{device_id}}", ""],
+              "query": [
+                {
+                  "key": "start_date",
+                  "value": "2024-01-01T00:00:00Z"
+                },
+                {
+                  "key": "end_date",
+                  "value": "2024-01-31T23:59:59Z"
+                }
+              ]
+            }
+          },
+          "response": []
+        }
+      ]
+    },
+    {
+      "name": "Statistics - Daily",
+      "item": [
+        {
+          "name": "Get Daily Statistics - Last 7 Days",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{base_url}}/statistics/{{device_id}}/daily/?start_date=2024-01-01T00:00:00Z&end_date=2024-01-07T23:59:59Z",
+              "host": ["{{base_url}}"],
+              "path": ["statistics", "{{device_id}}", "daily", ""],
+              "query": [
+                {
+                  "key": "start_date",
+                  "value": "2024-01-01T00:00:00Z"
+                },
+                {
+                  "key": "end_date",
+                  "value": "2024-01-07T23:59:59Z"
+                }
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Get Daily Statistics - Current Month",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{base_url}}/statistics/{{device_id}}/daily/?start_date=2024-01-01T00:00:00Z&end_date=2024-01-31T23:59:59Z",
+              "host": ["{{base_url}}"],
+              "path": ["statistics", "{{device_id}}", "daily", ""],
+              "query": [
+                {
+                  "key": "start_date",
+                  "value": "2024-01-01T00:00:00Z"
+                },
+                {
+                  "key": "end_date",
+                  "value": "2024-01-31T23:59:59Z"
+                }
+              ]
+            }
+          },
+          "response": []
+        }
+      ]
+    },
+    {
+      "name": "Statistics - Weekly",
+      "item": [
+        {
+          "name": "Get Weekly Statistics - Last 4 Weeks",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{base_url}}/statistics/{{device_id}}/weekly/?start_date=2024-01-01T00:00:00Z&end_date=2024-01-31T23:59:59Z",
+              "host": ["{{base_url}}"],
+              "path": ["statistics", "{{device_id}}", "weekly", ""],
+              "query": [
+                {
+                  "key": "start_date",
+                  "value": "2024-01-01T00:00:00Z"
+                },
+                {
+                  "key": "end_date",
+                  "value": "2024-01-31T23:59:59Z"
+                }
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Get Weekly Statistics - Current Year",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{base_url}}/statistics/{{device_id}}/weekly/?start_date=2024-01-01T00:00:00Z&end_date=2024-12-31T23:59:59Z",
+              "host": ["{{base_url}}"],
+              "path": ["statistics", "{{device_id}}", "weekly", ""],
+              "query": [
+                {
+                  "key": "start_date",
+                  "value": "2024-01-01T00:00:00Z"
+                },
+                {
+                  "key": "end_date",
+                  "value": "2024-12-31T23:59:59Z"
+                }
+              ]
+            }
+          },
+          "response": []
+        }
+      ]
+    },
+    {
+      "name": "Statistics - Monthly",
+      "item": [
+        {
+          "name": "Get Monthly Statistics - Current Year",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{base_url}}/statistics/{{device_id}}/monthly/?year=2024",
+              "host": ["{{base_url}}"],
+              "path": ["statistics", "{{device_id}}", "monthly", ""],
+              "query": [
+                {
+                  "key": "year",
+                  "value": "2024"
+                }
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Get Monthly Statistics - Previous Year",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{base_url}}/statistics/{{device_id}}/monthly/?year=2023",
+              "host": ["{{base_url}}"],
+              "path": ["statistics", "{{device_id}}", "monthly", ""],
+              "query": [
+                {
+                  "key": "year",
+                  "value": "2023"
+                }
+              ]
+            }
+          },
+          "response": []
+        }
+      ]
+    },
+    {
+      "name": "Statistics - Yearly",
+      "item": [
+        {
+          "name": "Get Yearly Statistics - Last 2 Years",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{base_url}}/statistics/{{device_id}}/yearly/?start_year=2023&end_year=2024",
+              "host": ["{{base_url}}"],
+              "path": ["statistics", "{{device_id}}", "yearly", ""],
+              "query": [
+                {
+                  "key": "start_year",
+                  "value": "2023"
+                },
+                {
+                  "key": "end_year",
+                  "value": "2024"
+                }
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Get Yearly Statistics - Current Year Only",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{base_url}}/statistics/{{device_id}}/yearly/?start_year=2024&end_year=2024",
+              "host": ["{{base_url}}"],
+              "path": ["statistics", "{{device_id}}", "yearly", ""],
+              "query": [
+                {
+                  "key": "start_year",
+                  "value": "2024"
+                },
+                {
+                  "key": "end_year",
+                  "value": "2024"
+                }
+              ]
+            }
+          },
+          "response": []
+        }
+      ]
+    },
+    {
+      "name": "Test Scenarios",
+      "item": [
+        {
+          "name": "Test Invalid Device ID",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{base_url}}/statistics/invalid-device/?period=day",
+              "host": ["{{base_url}}"],
+              "path": ["statistics", "invalid-device", ""],
+              "query": [
+                {
+                  "key": "period",
+                  "value": "day"
+                }
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Test Invalid Period",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{base_url}}/statistics/{{device_id}}/?period=invalid",
+              "host": ["{{base_url}}"],
+              "path": ["statistics", "{{device_id}}", ""],
+              "query": [
+                {
+                  "key": "period",
+                  "value": "invalid"
+                }
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Test Invalid Date Format",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{base_url}}/statistics/{{device_id}}/daily/?start_date=invalid-date&end_date=2024-01-07T23:59:59Z",
+              "host": ["{{base_url}}"],
+              "path": ["statistics", "{{device_id}}", "daily", ""],
+              "query": [
+                {
+                  "key": "start_date",
+                  "value": "invalid-date"
+                },
+                {
+                  "key": "end_date",
+                  "value": "2024-01-07T23:59:59Z"
+                }
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Test Missing Required Parameters",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{base_url}}/statistics/{{device_id}}/daily/",
+              "host": ["{{base_url}}"],
+              "path": ["statistics", "{{device_id}}", "daily", ""]
+            }
+          },
+          "response": []
+        }
+      ]
+    },
+    {
+      "name": "Performance Tests",
+      "item": [
+        {
+          "name": "Load Test - Multiple Statistics Requests",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{base_url}}/statistics/{{device_id}}/?period=month",
+              "host": ["{{base_url}}"],
+              "path": ["statistics", "{{device_id}}", ""],
+              "query": [
+                {
+                  "key": "period",
+                  "value": "month"
+                }
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Large Date Range Test",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{base_url}}/statistics/{{device_id}}/daily/?start_date=2023-01-01T00:00:00Z&end_date=2024-12-31T23:59:59Z",
+              "host": ["{{base_url}}"],
+              "path": ["statistics", "{{device_id}}", "daily", ""],
+              "query": [
+                {
+                  "key": "start_date",
+                  "value": "2023-01-01T00:00:00Z"
+                },
+                {
+                  "key": "end_date",
+                  "value": "2024-12-31T23:59:59Z"
+                }
+              ]
+            }
+          },
+          "response": []
+        }
+      ]
+    }
+  ],
+  "event": [
+    {
+      "listen": "prerequest",
+      "script": {
+        "type": "text/javascript",
+        "exec": [
+          "// Set current date for dynamic testing",
+          "const now = new Date();",
+          "const currentYear = now.getFullYear();",
+          "const currentMonth = String(now.getMonth() + 1).padStart(2, '0');",
+          "const currentDay = String(now.getDate()).padStart(2, '0');",
+          "",
+          "// Set environment variables for dynamic dates",
+          "pm.environment.set('current_year', currentYear);",
+          "pm.environment.set('current_month', currentMonth);",
+          "pm.environment.set('current_day', currentDay);",
+          "",
+          "// Generate date ranges",
+          "const startOfMonth = `${currentYear}-${currentMonth}-01T00:00:00Z`;",
+          "const endOfMonth = `${currentYear}-${currentMonth}-${currentDay}T23:59:59Z`;",
+          "",
+          "pm.environment.set('start_of_month', startOfMonth);",
+          "pm.environment.set('end_of_month', endOfMonth);"
+        ]
+      }
+    },
+    {
+      "listen": "test",
+      "script": {
+        "type": "text/javascript",
+        "exec": [
+          "// Common test scripts for all requests",
+          "pm.test('Response time is less than 5000ms', function () {",
+          "    pm.expect(pm.response.responseTime).to.be.below(5000);",
+          "});",
+          "",
+          "pm.test('Response has Content-Type header', function () {",
+          "    pm.expect(pm.response.headers.get('Content-Type')).to.include('application/json');",
+          "});",
+          "",
+          "// Test for statistics endpoints",
+          "if (pm.request.url.path.includes('statistics')) {",
+          "    pm.test('Statistics response is valid JSON', function () {",
+          "        pm.response.to.be.json;",
+          "    });",
+          "    ",
+          "    pm.test('Response status is 200 or 400', function () {",
+          "        pm.expect(pm.response.code).to.be.oneOf([200, 400]);",
+          "    });",
+          "}"
+        ]
+      }
+    }
+  ]
+}
